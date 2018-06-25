@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import {
+  setLocalNotification,
+  clearLocalNotification,
+  getDailyReminderValue
+} from '../../common/helpers';
 
 export default class DeckDetailsScreen extends Component {
+  handleStart = () => {
+    alert('click');
+    clearLocalNotification().then(setLocalNotification);
+  };
   render() {
     const { deck = {}, addCard } = this.props.navigation.state.params;
     const { questions = [] } = deck;
@@ -85,7 +94,7 @@ export default class DeckDetailsScreen extends Component {
             <Text>Add Card</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => alert('click')}
+            onPress={() => this.handleStart()}
             style={{
               padding: 10,
               alignItems: 'center',

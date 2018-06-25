@@ -9,6 +9,16 @@ import DeckScreen from './src/container/Deck/DeckScreen';
 import AddDeckScreen from './src/container/AddDeck/AddDeckScreen';
 import DeckDetailsScreen from './src/container/DeckDetailsScreen/DeckDetailsScreen';
 import AddCardScreen from './src/container/AddCard/AddCardScreen';
+import { setLocalNotification } from './src/common/helpers';
+
+export default class App extends Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+  render() {
+    return <Navigator />;
+  }
+}
 
 const HomeStack = createStackNavigator(
   {
@@ -30,7 +40,7 @@ const AddDeckStack = createStackNavigator({
   //Details: DetailsScreen
 });
 
-export default createBottomTabNavigator(
+const Navigator = createBottomTabNavigator(
   {
     Decks: {
       screen: HomeStack
