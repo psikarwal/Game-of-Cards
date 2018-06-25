@@ -4,31 +4,16 @@ import { withNavigation } from 'react-navigation';
 import { View, Text, ScrollView, Button, AsyncStorage } from 'react-native';
 
 class DeckScreen extends Component {
-  state = {
-    React: {
-      title: 'React',
-      questions: [
-        {
-          question: 'What is React?',
-          answer: 'A library for managing user interfaces'
-        },
-        {
-          question: 'Where do you make Ajax requests in React?',
-          answer: 'The componentDidMount lifecycle event'
-        }
-      ]
-    },
-    JavaScript: {
-      title: 'JavaScript',
-      questions: [
-        {
-          question: 'What is a closure?',
-          answer:
-            'The combination of a function and the lexical environment within which that function was declared.'
-        }
-      ]
-    }
-  };
+  state = {};
+  componentDidMount() {
+    AsyncStorage.getItem('decks').then(value =>
+      this.setState({ ...JSON.parse(value) })
+    );
+  }
+  componentDidUpdate() {
+    this.storeItem('decks', this.state);
+    console.log(15, 'component did upadte');
+  }
   addCard = ({ title, question, answer }) => {
     this.setState(state => ({
       ...state,
@@ -47,12 +32,21 @@ class DeckScreen extends Component {
         questions: []
       }
     }));
-    //this.decks.push(title);
-    //this.forceUpdate();
   };
+  async storeItem(key, item) {
+    try {
+      var jsonOfItem = await AsyncStorage.setItem(key, JSON.stringify(item));
+      console.log(70, 'try', jsonOfItem);
+
+      return jsonOfItem;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
   render() {
     console.log(43, this.state);
     const decks = Object.keys(this.state);
+    console.log(49, this.props);
 
     return (
       <View style={{ height: '100%', backgroundColor: '#FFF' }}>
@@ -84,7 +78,7 @@ class DeckScreen extends Component {
               addCard={this.addCard}
             />
           ))}
-          <Button title="Add Card" onPress={() => this.addDeck('lol')} />
+          <Button title="Add Card" onPress={() => this.addDeck('Test')} />
         </ScrollView>
       </View>
     );
