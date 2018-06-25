@@ -8,12 +8,12 @@ class NewDeck extends React.Component {
   render() {
     return (
       <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          margin: 10
-        }}
+      // style={{
+      //   flex: 1,
+      //   justifyContent: 'center',
+      //   alignItems: 'center',
+      //   margin: 10
+      // }}
       >
         <TextInput
           style={{
@@ -30,7 +30,13 @@ class NewDeck extends React.Component {
           onChangeText={title => this.setState({ title })}
           value={this.state.text}
         />
-        <Button title="Add Deck" onPress={() => this.props.handleSubmit()} />
+        <Button
+          title="Add Deck"
+          onPress={() => {
+            this.props.addDeck(this.state.title);
+            this.setState({ title: '' });
+          }}
+        />
       </View>
     );
   }

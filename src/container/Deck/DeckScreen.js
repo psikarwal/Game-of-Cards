@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import Deck from '../../component/Deck/Deck';
 import { withNavigation } from 'react-navigation';
-import { View, Text, ScrollView, Button, AsyncStorage } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Button,
+  AsyncStorage,
+  TextInput
+} from 'react-native';
+import NewDeck from '../../component/NewDeck/NewDeck';
 
 class DeckScreen extends Component {
   state = {};
@@ -78,7 +86,7 @@ class DeckScreen extends Component {
               addCard={this.addCard}
             />
           ))}
-          <Button title="Add Card" onPress={() => this.addDeck('Test')} />
+          <NewDeck addDeck={this.addDeck} />
         </ScrollView>
       </View>
     );
