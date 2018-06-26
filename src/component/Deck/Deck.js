@@ -10,7 +10,7 @@ import {
 
 class Deck extends Component {
   render() {
-    const { deck = {}, addCard } = this.props;
+    const { deck = {}, addCard, getDeck } = this.props;
     const { questions = [] } = deck;
     return (
       <TouchableOpacity
@@ -21,7 +21,11 @@ class Deck extends Component {
           elevation: 4
         }}
         onPress={() =>
-          this.props.navigation.navigate('Details', { deck, addCard })
+          this.props.navigation.navigate('Details', {
+            title: deck.title,
+            addCard,
+            getDeck
+          })
         }
       >
         <View

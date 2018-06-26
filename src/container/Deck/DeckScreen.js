@@ -42,6 +42,7 @@ class DeckScreen extends Component {
       }
     }));
   };
+  getDeck = title => this.state[title];
   async storeItem(key, item) {
     try {
       var jsonOfItem = await AsyncStorage.setItem(key, JSON.stringify(item));
@@ -92,6 +93,7 @@ class DeckScreen extends Component {
               navigation={this.props.navigation}
               key={`${index + 1}`}
               deck={this.state[deck]}
+              getDeck={this.getDeck}
               addCard={this.addCard}
             />
           ))}

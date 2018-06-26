@@ -16,10 +16,11 @@ export default class DeckDetailsScreen extends Component {
     Animated.timing(opacity, { toValue: 1, duration: 1000 }).start();
   }
   render() {
-    const { deck = {}, addCard } = this.props.navigation.state.params;
+    const { title = '', addCard, getDeck } = this.props.navigation.state.params;
+    const deck = getDeck(title);
     const { questions = [] } = deck;
     const { opacity } = this.state;
-    const title = deck.title;
+    console.log(67263, deck);
 
     return (
       <Animated.View
@@ -45,7 +46,7 @@ export default class DeckDetailsScreen extends Component {
               fontSize: 20
             }}
           >
-            {deck.title}
+            {title}
           </Text>
         </View>
 
@@ -61,7 +62,7 @@ export default class DeckDetailsScreen extends Component {
             elevation: 4
           }}
         >
-          <Text style={{ fontSize: 25, fontWeight: 'bold' }}>{deck.title}</Text>
+          <Text style={{ fontSize: 25, fontWeight: 'bold' }}>{title}</Text>
           <Text style={{ marginTop: 10 }}>
             {questions.length} {questions.length > 1 ? 'Cards' : 'Card'}
           </Text>
