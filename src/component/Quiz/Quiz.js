@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 export default class Quiz extends Component {
+  state = {
+    question: true
+  };
   render() {
     const { total, count } = this.props;
     return (
@@ -10,13 +13,13 @@ export default class Quiz extends Component {
           margin: 10,
           paddingVertical: 15,
           paddingHorizontal: 15,
-          height: '50%',
+          height: '60%',
           borderRadius: 5,
           elevation: 4
         }}
       >
         <Text style={{ alignSelf: 'flex-end' }}>
-          {count}/{total}
+          {total - count + 1} Remaining
         </Text>
         <View
           style={{
@@ -27,9 +30,21 @@ export default class Quiz extends Component {
           }}
         >
           <Text style={{ fontSize: 25, fontWeight: 'bold' }}>
-            This is a sample qustion and can you still hold it
+            {this.state.question
+              ? this.props.question.question
+              : this.props.question.answer}
           </Text>
-          <Text style={{ marginTop: 10 }}>Answer</Text>
+          <TouchableOpacity
+            onPress={() =>
+              this.setState(state => ({
+                question: !state.question
+              }))
+            }
+          >
+            <Text style={{ marginTop: 10 }}>
+              Show {this.state.question ? 'Answer' : 'Question'}
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

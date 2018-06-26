@@ -32,7 +32,6 @@ class DeckScreen extends Component {
         questions: [...state[title].questions, { question, answer }]
       }
     }));
-    //this.forceUpdate();
   };
   addDeck = title => {
     this.setState(state => ({

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Animated } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import {
   setLocalNotification,
@@ -8,17 +8,23 @@ import {
 } from '../../common/helpers';
 
 export default class DeckDetailsScreen extends Component {
-  handleStart = () => {
-    alert('click');
-    clearLocalNotification().then(setLocalNotification);
+  state = {
+    opacity: new Animated.Value(0)
   };
+  componentDidMount() {
+    const { opacity } = this.state;
+    Animated.timing(opacity, { toValue: 1, duration: 1000 }).start();
+  }
   render() {
     const { deck = {}, addCard } = this.props.navigation.state.params;
     const { questions = [] } = deck;
-
+    const { opacity } = this.state;
     const title = deck.title;
+
     return (
-      <View style={{ height: '100%', backgroundColor: '#FFFD' }}>
+      <Animated.View
+        style={{ height: '100%', backgroundColor: '#FFFD', opacity }}
+      >
         <View style={{ height: 24, backgroundColor: '#0081cb' }} />
         <View
           style={{
@@ -94,7 +100,9 @@ export default class DeckDetailsScreen extends Component {
             onPress={() => {
               questions.length > 0
                 ? this.props.navigation.navigate('Quiz', { deck })
-                : alert('This deck does not any card');
+                : alert(
+                    'This deck does not have any card. Please add a card to start the quiz'
+                  );
             }}
             style={{
               padding: 10,
@@ -110,7 +118,7 @@ export default class DeckDetailsScreen extends Component {
             <Text style={{ color: 'white' }}>Start Quiz</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </Animated.View>
     );
   }
 }

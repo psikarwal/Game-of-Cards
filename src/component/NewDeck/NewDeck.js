@@ -6,12 +6,16 @@ class NewDeck extends React.Component {
   state = {
     title: ''
   };
-  handleSubmit() {
-    this.props.addDeck(this.state.title);
-    this.setState({ title: '' });
-    this.props.navigation.goBack();
-  }
   render() {
+    const handleSubmit = () => {
+      if (this.state.title) {
+        this.props.addDeck(this.state.title);
+        this.setState({ title: '' });
+        this.props.navigation.goBack();
+      } else {
+        alert('This field cannot be left empty');
+      }
+    };
     return (
       <View
         style={{
@@ -58,7 +62,7 @@ class NewDeck extends React.Component {
           }}
         >
           <TouchableOpacity
-            onPress={() => this.handleSubmit()}
+            onPress={() => handleSubmit()}
             style={{
               padding: 10,
               alignItems: 'center',

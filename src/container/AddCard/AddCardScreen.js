@@ -19,6 +19,18 @@ class AddCardScreen extends Component {
   render() {
     const { question, answer } = this.state;
     const { title, addCard } = this.props.navigation.state.params;
+    const handleSubmit = () => {
+      if (this.state.question && this.state.answer) {
+        addCard({
+          title,
+          question: this.state.question,
+          answer: this.state.answer
+        });
+        this.props.navigation.goBack();
+      } else {
+        alert('Question and Answer cannot be empty');
+      }
+    };
     return (
       <View style={{ height: '100%', backgroundColor: '#FFF' }}>
         <View style={{ height: 24, backgroundColor: '#0081cb' }} />
@@ -82,17 +94,7 @@ class AddCardScreen extends Component {
             onChangeText={answer => this.setState({ answer })}
             value={this.state.answer}
           />
-          <Button
-            title="Add Card"
-            onPress={() => {
-              addCard({
-                title,
-                question: this.state.question,
-                answer: this.state.answer
-              });
-              this.props.navigation.goBack();
-            }}
-          />
+          <Button title="Add Card" onPress={() => handleSubmit()} />
         </View>
       </View>
     );
