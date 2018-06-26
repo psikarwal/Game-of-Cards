@@ -9,6 +9,7 @@ import DeckScreen from './src/container/Deck/DeckScreen';
 import AddDeckScreen from './src/container/AddDeck/AddDeckScreen';
 import DeckDetailsScreen from './src/container/DeckDetailsScreen/DeckDetailsScreen';
 import AddCardScreen from './src/container/AddCard/AddCardScreen';
+import QuizScreen from './src/container/QuizScreen/QuizScreen';
 import { setLocalNotification } from './src/common/helpers';
 
 export default class App extends Component {
@@ -16,7 +17,7 @@ export default class App extends Component {
     setLocalNotification();
   }
   render() {
-    return <Navigator />;
+    return <HomeStack />;
   }
 }
 
@@ -25,32 +26,14 @@ const HomeStack = createStackNavigator(
     Home: {
       screen: DeckScreen
     },
+    NewDeck: AddDeckScreen,
     Details: DeckDetailsScreen,
-    AddCard: AddCardScreen
+    AddCard: AddCardScreen,
+    Quiz: QuizScreen
   },
   {
     initialRouteName: 'Home',
     headerMode: 'none',
     title: 'Home'
-  }
-);
-
-const AddDeckStack = createStackNavigator({
-  Settings: AddDeckScreen
-  //Details: DetailsScreen
-});
-
-const Navigator = createBottomTabNavigator(
-  {
-    Decks: {
-      screen: HomeStack
-    },
-    'New Deck': AddDeckStack
-  },
-  {
-    tabBarOptions: {
-      activeTintColor: '#00b0ff',
-      inactiveTintColor: 'gray'
-    }
   }
 );

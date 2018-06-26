@@ -15,9 +15,6 @@ export default class DeckDetailsScreen extends Component {
   render() {
     const { deck = {}, addCard } = this.props.navigation.state.params;
     const { questions = [] } = deck;
-    console.log(9, this.props);
-    console.log(10, deck);
-    console.log(11, questions);
 
     const title = deck.title;
     return (
@@ -94,7 +91,11 @@ export default class DeckDetailsScreen extends Component {
             <Text>Add Card</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.handleStart()}
+            onPress={() => {
+              questions.length > 0
+                ? this.props.navigation.navigate('Quiz', { deck })
+                : alert('This deck does not any card');
+            }}
             style={{
               padding: 10,
               alignItems: 'center',

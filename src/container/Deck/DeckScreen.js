@@ -7,9 +7,11 @@ import {
   ScrollView,
   Button,
   AsyncStorage,
-  TextInput
+  TextInput,
+  TouchableOpacity
 } from 'react-native';
 import NewDeck from '../../component/NewDeck/NewDeck';
+import { MaterialIcons } from '@expo/vector-icons';
 
 class DeckScreen extends Component {
   state = {};
@@ -65,7 +67,8 @@ class DeckScreen extends Component {
             padding: 15,
             elevation: 6,
             flexDirection: 'row',
-            alignItems: 'center'
+            alignItems: 'center',
+            justifyContent: 'space-between'
           }}
         >
           <Text
@@ -76,6 +79,13 @@ class DeckScreen extends Component {
           >
             Decks
           </Text>
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate('NewDeck', this.addDeck)
+            }
+          >
+            <MaterialIcons name="add-circle-outline" size={30} color="#fff" />
+          </TouchableOpacity>
         </View>
         <ScrollView>
           {decks.map((deck, index) => (
@@ -86,7 +96,6 @@ class DeckScreen extends Component {
               addCard={this.addCard}
             />
           ))}
-          <NewDeck addDeck={this.addDeck} />
         </ScrollView>
       </View>
     );
