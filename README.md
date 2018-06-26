@@ -5,3 +5,6 @@
 - open the terminal in the directory
 - `yarn`
 - `npm start`
+
+## Tested Platfrom
+- Android
