@@ -18,9 +18,7 @@ class AddCardScreen extends Component {
   };
   render() {
     const { question, answer } = this.state;
-    console.log(15, this.props);
     const { title, addCard } = this.props.navigation.state.params;
-    console.log(23, 'title', title);
     return (
       <View style={{ height: '100%', backgroundColor: '#FFF' }}>
         <View style={{ height: 24, backgroundColor: '#0081cb' }} />

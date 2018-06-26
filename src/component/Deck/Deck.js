@@ -13,8 +13,6 @@ class Deck extends Component {
   render() {
     const { deck = {}, addCard } = this.props;
     const { questions = [] } = deck;
-    console.log(16, questions);
-    console.log(18, this.props);
     return (
       <TouchableOpacity
         style={{
