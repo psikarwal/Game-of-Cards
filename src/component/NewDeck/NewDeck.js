@@ -8,8 +8,8 @@ class NewDeck extends React.Component {
   };
   render() {
     const handleSubmit = () => {
-      if (this.state.title) {
-        this.props.addDeck(this.state.title);
+      if (this.state.title.trim()) {
+        this.props.addDeck(this.state.title.trim());
         this.setState({ title: '' });
         this.props.navigation.goBack();
       } else {

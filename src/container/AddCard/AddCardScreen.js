@@ -20,11 +20,11 @@ class AddCardScreen extends Component {
     const { question, answer } = this.state;
     const { title, addCard } = this.props.navigation.state.params;
     const handleSubmit = () => {
-      if (this.state.question && this.state.answer) {
+      if (this.state.question.trim() && this.state.answer.trim()) {
         addCard({
           title,
-          question: this.state.question,
-          answer: this.state.answer
+          question: this.state.question.trim(),
+          answer: this.state.answer.trim()
         });
         this.props.navigation.goBack();
       } else {
