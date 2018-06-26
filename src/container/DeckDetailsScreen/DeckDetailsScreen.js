@@ -74,11 +74,6 @@ export default class DeckDetailsScreen extends Component {
         >
           <TouchableOpacity
             onPress={() =>
-              // addCard({
-              //   title: 'React',
-              //   question: 'question',
-              //   answer: 'answer'
-              // })
               this.props.navigation.navigate('AddCard', {
                 title,
                 addCard

@@ -7,7 +7,6 @@ import {
   TouchableHighlight,
   TouchableOpacity
 } from 'react-native';
-//import { withNavigation } from 'react-navigation';
 
 class Deck extends Component {
   render() {

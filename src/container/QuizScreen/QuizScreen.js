@@ -105,10 +105,6 @@ export default class QuizScreen extends Component {
               >
                 <Text style={{ color: 'white' }}>Incorrect</Text>
               </TouchableOpacity>
-              <Text>
-                {this.state.correct} {this.state.incorrect} {this.state.count}{' '}
-                {questions.length}
-              </Text>
             </View>
           </View>
         ) : (
@@ -234,10 +230,6 @@ export default class QuizScreen extends Component {
               >
                 <Text style={{ color: 'white' }}>Go Back</Text>
               </TouchableOpacity>
-              <Text>
-                {this.state.correct} {this.state.incorrect} {this.state.count}{' '}
-                {questions.length}
-              </Text>
             </View>
           </View>
         )}

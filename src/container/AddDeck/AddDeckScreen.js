@@ -36,7 +36,6 @@ class AddDeckScreen extends React.Component {
         <NewDeck addDeck={this.props.navigation.state.params} />
       </View>
     );
-    //return <Text>LOLOLLOL</Text>;
   }
 }
 
